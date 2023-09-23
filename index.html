@@ -23,6 +23,11 @@
         img {
             width: 100px;
             height: 100px;
+            cursor: pointer;
+        }
+        #location-image {
+            display: none;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -31,19 +36,33 @@
         <h1>Room Search</h1>
         <input type="text" id="search-box" placeholder="Enter an item to search">
         <div id="suggestions"></div>
+        <img id="location-image" src="" alt="Location Image">
     </div>
 
     <script>
-        const roomItems = {
-            "book": { location: "on the bookshelf", image: "book.png" },
-            "pen": { location: "on the desk", image: "pen.png" },
-            "toy car": { location: "under the bed", image: "toy_car.png" },
-            "headphones": { location: "on the table", image: "headphones.png" },
-            // Add more items and their locations here
-        };
+        const roomItems = {};
+
+        // Fetch data from the TXT file
+        fetch('room_data.txt')
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.split('\n');
+                let currentItem = null;
+                for (const line of lines) {
+                    if (line.trim() === '') {
+                        currentItem = null;
+                    } else if (!currentItem) {
+                        currentItem = line.trim();
+                        roomItems[currentItem] = {};
+                    } else {
+                        roomItems[currentItem].location = line.trim();
+                    }
+                }
+            });
 
         const searchBox = document.getElementById("search-box");
         const suggestionsDiv = document.getElementById("suggestions");
+        const locationImage = document.getElementById("location-image");
 
         searchBox.addEventListener("input", () => {
             const query = searchBox.value.toLowerCase();
@@ -52,17 +71,27 @@
 
         function showSuggestions(query) {
             suggestionsDiv.innerHTML = "";
+            locationImage.style.display = "none";
             for (const item in roomItems) {
                 if (item.includes(query)) {
-                    const { location, image } = roomItems[item];
+                    const location = roomItems[item].location;
                     const suggestionDiv = document.createElement("div");
                     suggestionDiv.innerHTML = `
-                        <img src="${image}" alt="${item}">
+                        <h2>${item}</h2>
                         <p>${item} is ${location}</p>
                     `;
+                    suggestionDiv.addEventListener("click", () => {
+                        showLocationImage(item);
+                    });
                     suggestionsDiv.appendChild(suggestionDiv);
                 }
             }
+        }
+
+        function showLocationImage(item) {
+            const locationImageFile = roomItems[item].locationImage;
+            locationImage.src = locationImageFile;
+            locationImage.style.display = "block";
         }
     </script>
 </body>
