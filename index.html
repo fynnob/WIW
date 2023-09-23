@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        #search-box {
+            width: 300px;
+            padding: 10px;
+            font-size: 18px;
+        }
+        #suggestions {
+            margin-top: 20px;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Room Search</h1>
+        <input type="text" id="search-box" placeholder="Enter an item to search">
+        <div id="suggestions"></div>
+    </div>
+
+    <script>
+        const roomItems = {
+            "book": { location: "on the bookshelf", image: "book.png" },
+            "pen": { location: "on the desk", image: "pen.png" },
+            "toy car": { location: "under the bed", image: "toy_car.png" },
+            "headphones": { location: "on the table", image: "headphones.png" },
+            // Add more items and their locations here
+        };
+
+        const searchBox = document.getElementById("search-box");
+        const suggestionsDiv = document.getElementById("suggestions");
+
+        searchBox.addEventListener("input", () => {
+            const query = searchBox.value.toLowerCase();
+            showSuggestions(query);
+        });
+
+        function showSuggestions(query) {
+            suggestionsDiv.innerHTML = "";
+            for (const item in roomItems) {
+                if (item.includes(query)) {
+                    const { location, image } = roomItems[item];
+                    const suggestionDiv = document.createElement("div");
+                    suggestionDiv.innerHTML = `
+                        <img src="${image}" alt="${item}">
+                        <p>${item} is ${location}</p>
+                    `;
+                    suggestionsDiv.appendChild(suggestionDiv);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
