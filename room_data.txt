@@ -1,0 +1,19 @@
+book
+on the bookshelf
+pen.png
+book_location.jpg
+
+pen
+on the desk
+pen.png
+pen_location.jpg
+
+toy car
+under the bed
+toy_car.png
+toy_car_location.jpg
+
+headphones
+on the table
+headphones.png
+headphones_location.jpg
