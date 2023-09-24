@@ -55,11 +55,12 @@
                         currentItem = line.trim();
                         roomItems[currentItem] = {};
                     } else {
-                        // Store the image filename based on whether it's for item or location
-                        if (!roomItems[currentItem].itemImage) {
-                            roomItems[currentItem].itemImage = line.trim();
-                        } else {
-                            roomItems[currentItem].locationImage = line.trim();
+                        // Split each line into parts
+                        const parts = line.split(':');
+                        if (parts.length === 2) {
+                            const key = parts[0].trim();
+                            const value = parts[1].trim();
+                            roomItems[currentItem][key] = value;
                         }
                     }
                 }
@@ -101,3 +102,4 @@
     </script>
 </body>
 </html>
+
