@@ -1,0 +1,44 @@
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+}
+
+.game-container {
+    background-color: #ccc;
+    border: 5px solid #999;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.tile {
+    width: 90px;
+    height: 90px;
+    background-color: #eee4da;
+    border-radius: 5px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 90px;
+    font-weight: bold;
+    position: absolute;
+}
+
+/* Add more CSS for specific game elements as needed */
