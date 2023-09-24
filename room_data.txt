@@ -1,6 +1,6 @@
 book
 on the bookshelf
-pen.png
+book.png
 book_location.jpg
 
 pen
