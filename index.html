@@ -40,30 +40,29 @@
     </div>
 
     <script>
-        const roomItems = {};
-
-        // Fetch data from the TXT file
-        fetch('room_data.txt')
-            .then(response => response.text())
-            .then(data => {
-                const lines = data.split('\n');
-                let currentItem = null;
-                for (const line of lines) {
-                    if (line.trim() === '') {
-                        currentItem = null;
-                    } else if (!currentItem) {
-                        currentItem = line.trim();
-                        roomItems[currentItem] = {};
-                    } else {
-                        const parts = line.split(':');
-                        if (parts.length === 2) {
-                            const key = parts[0].trim();
-                            const value = parts[1].trim();
-                            roomItems[currentItem][key] = value;
-                        }
-                    }
-                }
-            });
+        const roomItems = {
+            "book": {
+                location: "on the bookshelf",
+                itemImage: "book.png",
+                locationImage: "book_location.jpg"
+            },
+            "pen": {
+                location: "on the desk",
+                itemImage: "pen.png",
+                locationImage: "pen_location.jpg"
+            },
+            "toy car": {
+                location: "under the bed",
+                itemImage: "toy_car.png",
+                locationImage: "toy_car_location.jpg"
+            },
+            "headphones": {
+                location: "on the table",
+                itemImage: "headphones.png",
+                locationImage: "headphones_location.jpg"
+            }
+            // Add more items here as needed
+        };
 
         const searchBox = document.getElementById("search-box");
         const suggestionsDiv = document.getElementById("suggestions");
