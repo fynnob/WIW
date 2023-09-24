@@ -55,7 +55,12 @@
                         currentItem = line.trim();
                         roomItems[currentItem] = {};
                     } else {
-                        roomItems[currentItem].location = line.trim();
+                        // Store the image filename based on whether it's for item or location
+                        if (!roomItems[currentItem].itemImage) {
+                            roomItems[currentItem].itemImage = line.trim();
+                        } else {
+                            roomItems[currentItem].locationImage = line.trim();
+                        }
                     }
                 }
             });
