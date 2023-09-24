@@ -1,113 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Search</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #container {
-            text-align: center;
-            margin-top: 50px;
-        }
-        #search-box {
-            width: 300px;
-            padding: 10px;
-            font-size: 18px;
-        }
-        #suggestions {
-            margin-top: 20px;
-        }
-        img {
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-        }
-        #location-image {
-            display: none;
-            margin-top: 20px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <title>2048 Game</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div id="container">
-        <h1>Room Search</h1>
-        <input type="text" id="search-box" placeholder="Enter an item to search">
-        <div id="suggestions"></div>
-        <img id="location-image" src="" alt="Location Image">
+    <div class="container">
+        <h1>2048 Game</h1>
+        <div class="game-container">
+            <!-- Game grid will be generated using JavaScript -->
+        </div>
+        <p>Score: <span id="score">0</span></p>
     </div>
-
-    <script>
-        const roomItems = {
-            "book": {
-                location: "on the bookshelf",
-                itemImage: "book.png",
-                locationImage: "book_location.jpg"
-            },
-            "pen": {
-                location: "on the desk",
-                itemImage: "pen.png",
-                locationImage: "pen_location.jpg"
-            },
-            "toy car": {
-                location: "under the bed",
-                itemImage: "toy_car.png",
-                locationImage: "toy_car_location.jpg"
-            },
-            "Spy School Goes South by Stuart Gibbs": {
-                location: "in Book shelf (A2)",
-                itemImage: "SpySchoolGoesSouth.png",
-                locationImage: "SpySchoolGoesSouth_location.jpg"
-            },
-            "Spy School Project X by Stuart Gibbs": {
-                location: "in Book shelf (A2)",
-                itemImage: "SpySchoolProjectX.png",
-                locationImage: "SpySchoolProjectX_location.jpg"
-            },
-            "Spy School British Invasion by Stuart Gibbs": {
-                location: "in Book shelf (A2)",
-                itemImage: "SpySchoolBritishInvasion.png",
-                locationImage: "SpySchoolBritishInvasion_location.jpg"
-            }
-        
-            // Add more items here as needed
-        };
-
-        const searchBox = document.getElementById("search-box");
-        const suggestionsDiv = document.getElementById("suggestions");
-        const locationImage = document.getElementById("location-image");
-
-        searchBox.addEventListener("input", () => {
-            const query = searchBox.value.toLowerCase();
-            showSuggestions(query);
-        });
-
-        function showSuggestions(query) {
-            suggestionsDiv.innerHTML = "";
-            locationImage.style.display = "none";
-            for (const item in roomItems) {
-                if (item.includes(query)) {
-                    const location = roomItems[item].location;
-                    const suggestionDiv = document.createElement("div");
-                    suggestionDiv.innerHTML = `
-                        <h2>${item}</h2>
-                        <p>${item} is ${location}</p>
-                    `;
-                    suggestionDiv.addEventListener("click", () => {
-                        showLocationImage(item);
-                    });
-                    suggestionsDiv.appendChild(suggestionDiv);
-                }
-            }
-        }
-
-        function showLocationImage(item) {
-            const locationImageFile = roomItems[item].locationImage;
-            locationImage.src = locationImageFile;
-            locationImage.style.display = "block";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
