@@ -17,3 +17,23 @@ headphones
 on the table
 headphones.png
 headphones_location.jpg
+
+1book
+on the bookshelf
+1book.png
+1book_location.jpg
+
+1pen
+on the desk
+1pen.png
+1pen_location.jpg
+
+1toy car
+under the bed
+1toy_car.png
+1toy_car_location.jpg
+
+1headphones
+on the table
+1headphones.png
+1headphones_location.jpg
